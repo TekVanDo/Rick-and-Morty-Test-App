@@ -1,15 +1,15 @@
 import { combineLatest, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { PaginationController } from './controllers/PaginationController';
-import { PropertiesFilterController } from './controllers/PropertiesFilterController';
 import { IQueryFilterParams } from './interfaces/query-filter.interfaces';
 import { ControllersDictionary } from './interfaces/controllers-dictionary';
+import { PaginationController } from './controllers/pagination-controller';
+import { FilterController } from './controllers/filter-controller';
 
 export class QueryBuilder {
   totalCount = 0;
   private controllers: ControllersDictionary = {
     paginationController: new PaginationController(),
-    propertiesFilterController: new PropertiesFilterController()
+    propertiesFilterController: new FilterController()
   };
 
   constructor() {
@@ -39,7 +39,7 @@ export class QueryBuilder {
     return this.controllers.paginationController;
   }
 
-  getPropertiesFilterController(): PropertiesFilterController {
+  getPropertiesFilterController(): FilterController {
     return this.controllers.propertiesFilterController;
   }
 

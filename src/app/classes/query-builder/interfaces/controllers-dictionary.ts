@@ -1,8 +1,9 @@
-import { PaginationController } from '../controllers/PaginationController';
-import { PropertiesFilterController } from '../controllers/PropertiesFilterController';
+import { PaginationController } from '../controllers/pagination-controller';
+import { FilterController } from '../controllers/filter-controller';
+
 
 export interface ControllersDictionary {
   readonly paginationController: PaginationController;
-  readonly propertiesFilterController: PropertiesFilterController;
+  readonly propertiesFilterController: FilterController;
 }
 

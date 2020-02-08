@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
-import { PropertiesFilterController } from '../../../classes/query-builder/controllers/PropertiesFilterController';
 import { Gender, Statuses } from '../../../interfaces/character';
+import { FilterController } from '../../../classes/query-builder/controllers/filter-controller';
 
 interface FiltersData {
   name: string;
@@ -16,7 +16,7 @@ interface FiltersData {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CharactersHeaderComponent implements OnInit {
-  @Input() filterController: PropertiesFilterController;
+  @Input() filterController: FilterController;
   filters: FiltersData;
   gendersList = Gender;
   statusesList = Statuses;

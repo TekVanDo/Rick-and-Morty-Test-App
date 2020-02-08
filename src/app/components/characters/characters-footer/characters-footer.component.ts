@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
-import { PaginationController } from '../../../classes/query-builder/controllers/PaginationController';
+import { PaginationController } from '../../../classes/query-builder/controllers/pagination-controller';
 
 @Component({
   selector: 'app-characters-footer',

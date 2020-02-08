@@ -1,5 +1,5 @@
-import { CommonController } from './CommonController';
 import { IPropertiesFilter } from '../interfaces/query-filter.interfaces';
+import { CommonController } from './common-controller';
 
 export interface PropertiesItemUrlParams {
   field: string;
@@ -10,7 +10,7 @@ export interface PropertiesUrlParams {
   filter: PropertiesItemUrlParams[];
 }
 
-export class PropertiesFilterController extends CommonController<IPropertiesFilter, PropertiesUrlParams> {
+export class FilterController extends CommonController<IPropertiesFilter, PropertiesUrlParams> {
   setFilter(filterName, value) {
     const filters = this.getValue();
     if (!value && filters[value]) {

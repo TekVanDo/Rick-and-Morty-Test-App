@@ -1,6 +1,6 @@
 import { Subject } from 'rxjs';
-import { CommonController } from './CommonController';
 import { IPagination } from '../interfaces/query-filter.interfaces';
+import { CommonController } from './common-controller';
 
 export interface PaginationUrlParams {
   page?: number;
