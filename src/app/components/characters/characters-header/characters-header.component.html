@@ -3,20 +3,33 @@
     <div class="col-md-6">
       <div class="row">
         <div class="col-md-5">
+          <nz-input-group nzPrefixIcon="search"  class="m-r-10">
+            <input [(ngModel)]="filters.name" (ngModelChange)="setFilterValue('name', $event)" nzSize="large"
+                   type="text"
+                   nz-input placeholder="Search by name"/>
+          </nz-input-group>
+        </div>
+        <div class="col-md-5">
           <nz-input-group nzPrefixIcon="search">
-            <input [(ngModel)]="filterModel" (ngModelChange)="filterModelChange($event)" nzSize="large" type="text"
-                   nz-input placeholder="input search text"/>
+            <input [(ngModel)]="filters.species" (ngModelChange)="setFilterValue('species', $event)" nzSize="large"
+                   type="text"
+                   nz-input placeholder="Search by Species"/>
           </nz-input-group>
         </div>
       </div>
     </div>
     <div class="col-md-6">
       <div class="text-md-right">
-<!--        <nz-radio-group nzSize="large" [nzButtonStyle]="'solid'" [ngModel]="source"-->
-<!--                        (ngModelChange)="sourceChange.emit($event)">-->
-<!--          <label nz-radio-button nzValue="youtube"><i nz-icon nzType="youtube" nzTheme="outline"></i></label>-->
-<!--          <label nz-radio-button nzValue="stars"><i nz-icon nzType="star" nzTheme="outline"></i></label>-->
-<!--        </nz-radio-group>-->
+        <nz-select [(ngModel)]="filters.gender" (ngModelChange)="setFilterValue('gender', $event)" nzAllowClear
+                   class="m-r-10"
+                   nzPlaceHolder="Choose Gender">
+          <nz-option [nzValue]="gender.value" [nzLabel]="gender.key" *ngFor="let gender of gendersList | enumKeysPipe"></nz-option>
+        </nz-select>
+
+        <nz-select [(ngModel)]="filters.status" (ngModelChange)="setFilterValue('status', $event)" nzAllowClear
+                   nzPlaceHolder="Choose Status">
+          <nz-option [nzValue]="status.value" [nzLabel]="status.key" *ngFor="let status of statusesList | enumKeysPipe"></nz-option>
+        </nz-select>
       </div>
     </div>
   </div>

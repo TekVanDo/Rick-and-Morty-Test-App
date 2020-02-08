@@ -1,5 +1,13 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { PropertiesFilterController } from '../../../classes/query-builder/controllers/PropertiesFilterController';
+import { Gender, Statuses } from '../../../interfaces/character';
+
+interface FiltersData {
+  name: string;
+  gender: Gender;
+  status: Statuses;
+  species: string;
+}
 
 @Component({
   selector: 'app-characters-header',
@@ -9,19 +17,17 @@ import { PropertiesFilterController } from '../../../classes/query-builder/contr
 })
 export class CharactersHeaderComponent implements OnInit {
   @Input() filterController: PropertiesFilterController;
-  filterModel = '';
-
+  filters: FiltersData;
+  gendersList = Gender;
+  statusesList = Statuses;
   constructor() {
   }
 
   ngOnInit() {
-    const filters = this.filterController.getValue();
-    if (filters.filter) {
-      this.filterModel = filters.filter;
-    }
+    this.filters = this.filterController.getValue() as FiltersData;
   }
 
-  filterModelChange(value) {
-    this.filterController.setFilter('filter', value);
+  setFilterValue(filterName: string, value: string) {
+    this.filterController.setFilter(filterName, value);
   }
 }

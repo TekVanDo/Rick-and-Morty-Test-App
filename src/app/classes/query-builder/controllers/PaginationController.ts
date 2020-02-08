@@ -35,25 +35,6 @@ export class PaginationController extends CommonController<IPagination, Paginati
     return { itemsPerPage: 20, currentPage: PaginationController.DEFAULT_CURRENT_PAGE };
   }
 
-  nextPage() {
-    const params = this.getValue();
-    if (!this.totalCount || params.currentPage + 1 < this.getCountOfPages()) {
-      this.onChange.next({ ...params, currentPage: params.currentPage + 1 });
-    }
-  }
-
-  previousPage() {
-    const params = this.getValue();
-    if (params.currentPage - 1 > 0) {
-      this.onChange.next({ ...params, currentPage: params.currentPage - 1 });
-    }
-  }
-
-  getCountOfPages() {
-    const params = this.getValue();
-    return Math.ceil(this.totalCount / params.itemsPerPage);
-  }
-
   clear(): void {
     super.clear();
     this.setTotalCount(0);

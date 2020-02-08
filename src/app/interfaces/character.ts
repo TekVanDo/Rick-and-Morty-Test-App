@@ -23,6 +23,12 @@ export enum Gender {
   Unknown = 'unknown'
 }
 
+export enum Statuses {
+  Dead = 'dead',
+  Alive = 'alive',
+  Unknown = 'unknown'
+}
+
 export interface Character {
   id: number;
   name: string;

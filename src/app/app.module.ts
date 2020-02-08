@@ -12,6 +12,7 @@ import { CharacterItemComponent } from './components/characters/character-item/c
 import { CharactersHeaderComponent } from './components/characters/characters-header/characters-header.component';
 import { CharactersFooterComponent } from './components/characters/characters-footer/characters-footer.component';
 import { TimeAgoPipe } from 'time-ago-pipe';
+import { EnumKeysPipe } from './pipes/enum-keys-pipe.pipe';
 
 registerLocaleData(en);
 
@@ -22,7 +23,8 @@ registerLocaleData(en);
     CharacterItemComponent,
     CharactersHeaderComponent,
     CharactersFooterComponent,
-    TimeAgoPipe
+    TimeAgoPipe,
+    EnumKeysPipe
   ],
   imports: [
     BrowserModule,

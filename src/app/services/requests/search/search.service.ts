@@ -16,9 +16,10 @@ export class SearchService {
   getSearchQueryStream$(queryBuilder: QueryBuilder): Observable<Character[]> {
     return queryBuilder.getMainQueryParams$().pipe(
       debounceTime(100),
-      switchMap(({ propertiesFilter, sorting, pagination }) => {
+      switchMap(({ propertiesFilter, pagination }) => {
         const filtration = {
           page: pagination.currentPage.toString(),
+          ...propertiesFilter
         };
 
         const params = new HttpParams({
