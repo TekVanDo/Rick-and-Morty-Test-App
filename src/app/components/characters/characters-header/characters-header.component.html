@@ -1,0 +1,23 @@
+<div class="page-header">
+  <div class="row align-items-md-center">
+    <div class="col-md-6">
+      <div class="row">
+        <div class="col-md-5">
+          <nz-input-group nzPrefixIcon="search">
+            <input [(ngModel)]="filterModel" (ngModelChange)="filterModelChange($event)" nzSize="large" type="text"
+                   nz-input placeholder="input search text"/>
+          </nz-input-group>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="text-md-right">
+<!--        <nz-radio-group nzSize="large" [nzButtonStyle]="'solid'" [ngModel]="source"-->
+<!--                        (ngModelChange)="sourceChange.emit($event)">-->
+<!--          <label nz-radio-button nzValue="youtube"><i nz-icon nzType="youtube" nzTheme="outline"></i></label>-->
+<!--          <label nz-radio-button nzValue="stars"><i nz-icon nzType="star" nzTheme="outline"></i></label>-->
+<!--        </nz-radio-group>-->
+      </div>
+    </div>
+  </div>
+</div>

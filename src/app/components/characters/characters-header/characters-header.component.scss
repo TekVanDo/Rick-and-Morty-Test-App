@@ -1,0 +1,22 @@
+.page-header {
+  background-color: #fff;
+  border-bottom: 1px solid #edf2f9;
+  padding: 8px 30px;
+}
+
+.ant-input-affix-wrapper {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  color: rgba(0,0,0,.65);
+  font-variant: tabular-nums;
+  list-style: none;
+  -webkit-font-feature-settings: 'tnum';
+  font-feature-settings: 'tnum';
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  text-align: start;
+}
+
+

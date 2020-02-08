@@ -1,0 +1,23 @@
+<article class="character-card">
+  <div class="character-card-header">
+    <div class="card-image">
+      <img [attr.src]="character.image" alt="Aqua Morty">
+    </div>
+    <div class="card-title">
+      <h2 class="card-title-name">{{character.name}}</h2>
+      <p class="card-title-created">id: {{character.id}} - created {{character.created | timeAgo}}</p>
+    </div>
+  </div>
+  <div class="card-info">
+    <div class="card-info-row"><span>STATUS</span>
+      <p>{{character.status}}</p></div>
+    <div class="card-info-row"><span>Species</span>
+      <p>{{!character.type ? character.species : character.species + ', ' + character.type}}</p></div>
+    <div class="card-info-row"><span>Gender</span>
+      <p>{{character.gender}}</p></div>
+    <div class="card-info-row"><span>Origin</span>
+      <p>{{character.origin.name}}</p></div>
+    <div class="card-info-row"><span>Last location</span>
+      <p>{{character.location.name}}</p></div>
+  </div>
+</article>
