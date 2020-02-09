@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { Character } from '../../../interfaces/character';
 
 @Component({
@@ -7,11 +7,7 @@ import { Character } from '../../../interfaces/character';
   styleUrls: ['./character-item.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CharacterItemComponent implements OnInit {
+export class CharacterItemComponent {
   @Input() character: Character;
   constructor() { }
-
-  ngOnInit() {
-  }
-
 }

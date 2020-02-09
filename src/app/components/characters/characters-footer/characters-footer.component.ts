@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { PaginationController } from '../../../classes/query-builder/controllers/pagination-controller';
 
 @Component({
@@ -7,11 +7,7 @@ import { PaginationController } from '../../../classes/query-builder/controllers
   styleUrls: ['./characters-footer.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CharactersFooterComponent implements OnInit {
+export class CharactersFooterComponent {
   @Input() paginationController: PaginationController;
   constructor() { }
-
-  ngOnInit() {
-  }
-
 }

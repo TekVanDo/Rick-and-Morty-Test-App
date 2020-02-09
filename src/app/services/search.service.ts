@@ -1,16 +1,17 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { debounceTime, map, switchMap } from 'rxjs/operators';
-import { API_LINK } from '../../../consts/consts';
-import { Character, CharactersResponse } from '../../../interfaces/character';
-import { Observable } from 'rxjs';
-import { QueryBuilder } from '../../../classes/query-builder/query-builder';
+import { catchError, debounceTime, map, switchMap } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { QueryBuilder } from '../classes/query-builder/query-builder';
+import { Character, CharactersResponse } from '../interfaces/character';
+import { API_LINK } from '../consts/consts';
+import { NzNotificationService } from 'ng-zorro-antd';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SearchService {
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private notificationService: NzNotificationService) {
   }
 
   getSearchQueryStream$(queryBuilder: QueryBuilder): Observable<Character[]> {
@@ -21,7 +22,7 @@ export class SearchService {
         const paginationController = queryBuilder.getPaginationController();
         paginationController.setPage(1);
         return paginationController.getOnChange$()
-            .pipe(map((pagination) => ({filter, pagination})));
+          .pipe(map((pagination) => ({ filter, pagination })));
       }),
       switchMap(({ filter, pagination }) => {
         const filtration = {
@@ -33,7 +34,14 @@ export class SearchService {
           fromObject: filtration
         });
 
-        return this.http.get(API_LINK, { params });
+        return this.http.get(API_LINK, { params }).pipe(
+          catchError((err) => {
+            // if we have invalid request we drop the filters
+            const message = err && err.message || '';
+            this.notificationService.error('Error happened clear your filters and try again', message);
+            return of({ info: { count: 0 }, results: [] });
+          })
+        );
       }),
       map((data: CharactersResponse) => {
         queryBuilder.setTotalCount(data.info.count);
