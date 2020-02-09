@@ -1,4 +1,4 @@
-<app-characters-header [filterController]="queryBuilder.getPropertiesFilterController()"></app-characters-header>
+<app-characters-header [filterController]="queryBuilder.getFilterController()"></app-characters-header>
 <div class="characters-body">
   <div class="characters-body-block">
     <app-character-item [character]="character" *ngFor="let character of dataStream | async; trackBy: trackById"></app-character-item>

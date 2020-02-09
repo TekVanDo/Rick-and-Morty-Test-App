@@ -1,49 +1,36 @@
-import { combineLatest, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { IQueryFilterParams } from './interfaces/query-filter.interfaces';
 import { ControllersDictionary } from './interfaces/controllers-dictionary';
 import { PaginationController } from './controllers/pagination-controller';
 import { FilterController } from './controllers/filter-controller';
 
 export class QueryBuilder {
-  totalCount = 0;
   private controllers: ControllersDictionary = {
-    paginationController: new PaginationController(),
-    propertiesFilterController: new FilterController()
+    pagination: new PaginationController(),
+    filter: new FilterController()
   };
 
   constructor() {
   }
 
-  getMainQueryParams$(): Observable<IQueryFilterParams> {
-    return combineLatest([
-      this.controllers.propertiesFilterController.getOnChange$(),
-      this.controllers.paginationController.getOnChange$()
-    ]).pipe(map(([propertiesFilter, pagination]) => {
-      return { propertiesFilter, pagination };
-    }));
-  }
-
-  clear() {
+  clear(): void {
     Object.values(this.controllers).forEach((controller) => {
       controller.clear();
     });
   }
 
-  setTotalCount(totalCount: number) {
-    this.totalCount = totalCount;
-    this.controllers.paginationController.setTotalCount(this.totalCount);
+  setTotalCount(totalCount: number): void {
+    this.controllers.pagination.setTotalCount(totalCount);
   }
 
   getPaginationController(): PaginationController {
-    return this.controllers.paginationController;
+    return this.controllers.pagination;
   }
 
-  getPropertiesFilterController(): FilterController {
-    return this.controllers.propertiesFilterController;
+  getFilterController(): FilterController {
+    return this.controllers.filter;
   }
 
-  setQueryParams(params): void {
+  setQueryParams(params: IQueryFilterParams): void {
     Object.keys(this.controllers).forEach((key) => {
       if (params[key]) {
         this.controllers[key].setValue(params[key]);
@@ -51,18 +38,10 @@ export class QueryBuilder {
     });
   }
 
-  patchQueryParams(params) {
+  patchQueryParams(params: IQueryFilterParams): void {
     Object.keys(this.controllers).forEach((key) => {
       if (params[key]) {
         this.controllers[key].patchValue(params[key]);
-      }
-    });
-  }
-
-  setDefaultQueryParams(params): void {
-    Object.keys(this.controllers).forEach((key) => {
-      if (params[key]) {
-        this.controllers[key].setDefaultValue(params[key]);
       }
     });
   }

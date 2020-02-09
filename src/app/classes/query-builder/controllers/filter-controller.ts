@@ -1,16 +1,7 @@
 import { IPropertiesFilter } from '../interfaces/query-filter.interfaces';
 import { CommonController } from './common-controller';
 
-export interface PropertiesItemUrlParams {
-  field: string;
-  value: string | string[];
-}
-
-export interface PropertiesUrlParams {
-  filter: PropertiesItemUrlParams[];
-}
-
-export class FilterController extends CommonController<IPropertiesFilter, PropertiesUrlParams> {
+export class FilterController extends CommonController<IPropertiesFilter> {
   setFilter(filterName, value) {
     const filters = this.getValue();
     if (!value && filters[value]) {

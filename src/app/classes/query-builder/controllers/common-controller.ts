@@ -2,7 +2,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import * as _ from 'lodash';
 import { IQueryFilterController } from '../interfaces/query-filter.interfaces';
 
-export abstract class CommonController<T = any, ToUrlType = any> implements IQueryFilterController<T> {
+export abstract class CommonController<T = any> implements IQueryFilterController<T> {
   protected onChange: BehaviorSubject<T>;
   defaultValue: any = {};
 
@@ -35,10 +35,6 @@ export abstract class CommonController<T = any, ToUrlType = any> implements IQue
 
   getDefaultValue(): T {
     return this.defaultValue;
-  }
-
-  setDefaultValue(value: T): void {
-    this.defaultValue = value;
   }
 
   clear(): void {

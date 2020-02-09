@@ -14,12 +14,19 @@ export class SearchService {
   }
 
   getSearchQueryStream$(queryBuilder: QueryBuilder): Observable<Character[]> {
-    return queryBuilder.getMainQueryParams$().pipe(
+    return queryBuilder.getFilterController().getOnChange$().pipe(
       debounceTime(100),
-      switchMap(({ propertiesFilter, pagination }) => {
+      switchMap((filter) => {
+        // switch to the first page if filter was applied
+        const paginationController = queryBuilder.getPaginationController();
+        paginationController.setPage(1);
+        return paginationController.getOnChange$()
+            .pipe(map((pagination) => ({filter, pagination})));
+      }),
+      switchMap(({ filter, pagination }) => {
         const filtration = {
           page: pagination.currentPage.toString(),
-          ...propertiesFilter
+          ...filter
         };
 
         const params = new HttpParams({

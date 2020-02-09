@@ -1,6 +1,6 @@
 <div class="fit-content" *ngIf="paginationController.getOnChange$() | async as pagination">
   <nz-pagination [nzPageIndex]="pagination.currentPage"
-                 [nzTotal]="paginationController.onTotalCountChange | async"
+                 [nzTotal]="paginationController.totalCount$ | async"
                  (nzPageIndexChange)="paginationController.setPage($event)"
                  [nzPageSize]="pagination.itemsPerPage"></nz-pagination>
 </div>

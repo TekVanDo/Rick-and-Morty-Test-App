@@ -3,7 +3,7 @@ import { FilterController } from '../controllers/filter-controller';
 
 
 export interface ControllersDictionary {
-  readonly paginationController: PaginationController;
-  readonly propertiesFilterController: FilterController;
+  readonly pagination: PaginationController;
+  readonly filter: FilterController;
 }
 

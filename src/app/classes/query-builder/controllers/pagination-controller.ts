@@ -1,25 +1,18 @@
-import { Subject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 import { IPagination } from '../interfaces/query-filter.interfaces';
 import { CommonController } from './common-controller';
 
-export interface PaginationUrlParams {
-  page?: number;
-}
-
-export class PaginationController extends CommonController<IPagination, PaginationUrlParams> {
+export class PaginationController extends CommonController<IPagination> {
   static DEFAULT_CURRENT_PAGE = 1;
-  private totalCount: number;
-  onTotalCountChange: Subject<number>;
+  totalCount$: BehaviorSubject<number>;
 
   constructor() {
     super();
-    this.totalCount = 0;
-    this.onTotalCountChange = new Subject();
+    this.totalCount$ = new BehaviorSubject<number>(null);
   }
 
   setTotalCount(totalCount: number) {
-    this.totalCount = totalCount;
-    this.onTotalCountChange.next(this.totalCount);
+    this.totalCount$.next(totalCount);
   }
 
   setPage(page: number) {
@@ -29,7 +22,6 @@ export class PaginationController extends CommonController<IPagination, Paginati
   setItemsPerPage(perPage) {
     this.onChange.next({ currentPage: PaginationController.DEFAULT_CURRENT_PAGE, itemsPerPage: perPage });
   }
-
 
   getDefaultValue(): IPagination {
     return { itemsPerPage: 20, currentPage: PaginationController.DEFAULT_CURRENT_PAGE };
