@@ -1,6 +1,6 @@
 # RickAndMortyApp
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.20.
+This is Test Project made by Alexander Strochkov. Made with [The Rick and Morty API](https://rickandmortyapi.com) 
 
 ## Development server
 

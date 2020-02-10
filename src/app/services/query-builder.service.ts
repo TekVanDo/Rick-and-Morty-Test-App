@@ -5,7 +5,7 @@ import { QueryBuilder } from '../classes/query-builder/query-builder';
   providedIn: 'root'
 })
 export class QueryBuilderService {
-
+  // Service for get QueryBuilder through DI
   constructor() {
   }
 

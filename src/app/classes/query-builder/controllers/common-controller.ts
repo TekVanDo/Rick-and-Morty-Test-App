@@ -14,8 +14,7 @@ export abstract class CommonController<T = any> implements IQueryFilterControlle
     if (typeof params !== 'object') {
       throw new Error('params should be an object');
     }
-
-    if (isEqual(this.getValue(), params)) {
+    if (!isEqual(this.getValue(), params)) {
       this.onChange.next({ ...params });
     }
   }

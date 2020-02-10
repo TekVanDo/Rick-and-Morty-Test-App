@@ -16,11 +16,11 @@ export class PaginationController extends CommonController<IPagination> {
   }
 
   setPage(page: number) {
-    this.onChange.next({ ...this.getValue(), currentPage: page });
+    this.setValue({ ...this.getValue(), currentPage: page });
   }
 
-  setItemsPerPage(perPage) {
-    this.onChange.next({ currentPage: PaginationController.DEFAULT_CURRENT_PAGE, itemsPerPage: perPage });
+  setItemsPerPage(itemsPerPage: number) {
+    this.setValue({ currentPage: PaginationController.DEFAULT_CURRENT_PAGE, itemsPerPage });
   }
 
   getDefaultValue(): IPagination {

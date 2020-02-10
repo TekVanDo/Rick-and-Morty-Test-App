@@ -1,10 +1,9 @@
 import { IQueryFilterParams } from './interfaces/query-filter.interfaces';
-import { ControllersDictionary } from './interfaces/controllers-dictionary';
 import { PaginationController } from './controllers/pagination-controller';
 import { FilterController } from './controllers/filter-controller';
 
 export class QueryBuilder {
-  private controllers: ControllersDictionary = {
+  private controllers = {
     pagination: new PaginationController(),
     filter: new FilterController()
   };
