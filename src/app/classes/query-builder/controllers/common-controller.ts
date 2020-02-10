@@ -1,5 +1,5 @@
 import { BehaviorSubject, Observable } from 'rxjs';
-import * as _ from 'lodash';
+import { isEqual } from 'lodash';
 import { IQueryFilterController } from '../interfaces/query-filter.interfaces';
 
 export abstract class CommonController<T = any> implements IQueryFilterController<T> {
@@ -15,7 +15,7 @@ export abstract class CommonController<T = any> implements IQueryFilterControlle
       throw new Error('params should be an object');
     }
 
-    if (!_.isEqual(this.getValue(), params)) {
+    if (isEqual(this.getValue(), params)) {
       this.onChange.next({ ...params });
     }
   }
