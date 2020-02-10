@@ -3,6 +3,7 @@ import { QueryBuilder } from '../../classes/query-builder/query-builder';
 import { Character } from '../../interfaces/character';
 import { Observable } from 'rxjs';
 import { SearchService } from '../../services/search.service';
+import { QueryBuilderService } from '../../services/query-builder.service';
 
 @Component({
   selector: 'app-characters',
@@ -13,8 +14,8 @@ import { SearchService } from '../../services/search.service';
 export class CharactersComponent implements OnInit {
   queryBuilder: QueryBuilder;
   dataStream: Observable<Character[]>;
-  constructor(private searchService: SearchService) {
-    this.queryBuilder = new QueryBuilder();
+  constructor(private searchService: SearchService, queryBuilderService: QueryBuilderService) {
+    this.queryBuilder = queryBuilderService.getNewQueryBuilder();
     this.dataStream = this.searchService.getSearchQueryStream$(this.queryBuilder);
   }
 

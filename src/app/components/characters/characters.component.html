@@ -1,7 +1,14 @@
 <app-characters-header [filterController]="queryBuilder.getFilterController()"></app-characters-header>
 <div class="characters-body">
-  <div class="characters-body-block">
-    <app-character-item [character]="character" *ngFor="let character of dataStream | async; trackBy: trackById"></app-character-item>
-  </div>
+  <ng-container *ngIf="dataStream | async as characters">
+    <div class="characters-body-block" *ngIf="characters.length > 0  else notFound">
+      <app-character-item [character]="character"
+                          *ngFor="let character of characters; trackBy: trackById"></app-character-item>
+    </div>
+
+    <ng-template #notFound>
+      <p class="not-found">Characters not found, pls reset filters</p>
+    </ng-template>
+  </ng-container>
 </div>
 <app-characters-footer [paginationController]="queryBuilder.getPaginationController()"></app-characters-footer>

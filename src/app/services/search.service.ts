@@ -36,9 +36,11 @@ export class SearchService {
 
         return this.http.get(API_LINK, { params }).pipe(
           catchError((err) => {
-            // if we have invalid request we drop the filters
-            const message = err && err.message || '';
-            this.notificationService.error('Error happened clear your filters and try again', message);
+            // if we have invalid request and status is not 404 we show error message
+            if (err.status !== 404) {
+              const message = err && err.message || '';
+              this.notificationService.error('Error happened clear your filters and try again', message);
+            }
             return of({ info: { count: 0 }, results: [] });
           })
         );
